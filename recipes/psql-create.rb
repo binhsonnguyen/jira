@@ -5,6 +5,9 @@
 # Copyright 2013, Tom Eklöf
 #
 
+# Install dependencies
+include_recipe "postgresql::ruby"
+
 # create a postgresql database
 postgresql_database 'jira' do
   connection(
