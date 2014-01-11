@@ -9,12 +9,17 @@
 include_recipe "postgresql::ruby"
 
 # create a postgresql database
-postgresql_database 'jira' do
+postgresql_database 'jiradb' do
   connection(
-    :host      => '127.0.0.1',
-    :port      => 5432,
-    :username  => 'postgres',
-    :password  => node['postgresql']['password']['postgres']
+    :host     => '127.0.0.1',
+    :port     => 5432,
+    :username => 'postgres',
+    :password => node['postgresql']['password']['postgres']
   )
+  template 'template0'
+  encoding 'UTF8'
+  tablespace 'DEFAULT'
+  connection_limit '-1'
+  owner 'postgres'
   action :create
 end
